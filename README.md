@@ -7,6 +7,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## General info
+This project was built using Laravel, Blade, Tailwind CSS and Breeze
+
 ## Default Admin User
 - In order to create a default admin login, before the app deployment, go to your .env file and edit:
     - ADMIN_NAME=
