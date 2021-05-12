@@ -7,7 +7,13 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Default Admin User
+- In order to create a default admin login, before the app deployment, go to your .env file and edit:
+    - ADMIN_NAME=
+    - ADMIN_EMAIL=
+    - ADMIN_PASSWORD=
+    <br/>
+  Then run <i>'php artisan db:seed --force'</i>
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
