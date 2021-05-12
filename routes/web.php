@@ -18,15 +18,17 @@ use App\Http\Controllers\ProjectController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::resource('clients', ClientController::class);
-Route::resource('payments', PaymentController::class);
-Route::resource('projects', ProjectController::class);
+Route::resources([
+    'clients' => ClientController::class,
+    'payments' => PaymentController::class,
+    'projects' => ProjectController::class
+]);
 
 require __DIR__.'/auth.php';
