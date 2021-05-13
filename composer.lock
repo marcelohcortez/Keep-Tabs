@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ed76a9a380665cab88d4c5c83afea95",
+    "content-hash": "1763aaf6d2d4efd203d3070a4081c31e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -103,6 +103,48 @@
                 "math"
             ],
             "time": "2021-01-20T22:51:39+00:00"
+        },
+        {
+            "name": "ckeditor/ckeditor",
+            "version": "4.16.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ckeditor/ckeditor4-releases.git",
+                "reference": "98a1bce9c9237e2ee141c0d2e01c3f0576655d5d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ckeditor/ckeditor4-releases/zipball/98a1bce9c9237e2ee141c0d2e01c3f0576655d5d",
+                "reference": "98a1bce9c9237e2ee141c0d2e01c3f0576655d5d",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+",
+                "LGPL-2.1+",
+                "MPL-1.1+"
+            ],
+            "authors": [
+                {
+                    "name": "CKSource",
+                    "homepage": "https://cksource.com"
+                }
+            ],
+            "description": "JavaScript WYSIWYG web text editor.",
+            "homepage": "https://ckeditor.com/ckeditor-4/",
+            "keywords": [
+                "CKEditor",
+                "ckeditor4",
+                "editor",
+                "fckeditor",
+                "html",
+                "javascript",
+                "richtext",
+                "text",
+                "wysiwyg"
+            ],
+            "time": "2021-01-27T08:14:09+00:00"
         },
         {
             "name": "doctrine/inflector",

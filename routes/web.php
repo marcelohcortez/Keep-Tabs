@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\ProjectsController;
 
 
 /*
@@ -26,9 +26,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resources([
-    'clients' => ClientController::class,
-    'payments' => PaymentController::class,
-    'projects' => ProjectController::class
+    'clients' => ClientsController::class,
+    'payments' => PaymentsController::class,
+    'projects' => ProjectsController::class
 ]);
 
 require __DIR__.'/auth.php';
