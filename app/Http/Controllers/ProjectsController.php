@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\Project;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProjectsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('projects.index');
+        $projects = Project::all();
+        $clients = Client::all();
+        return view('projects.index')->with('projects', $projects)->with('clients', $clients);
     }
 
     /**
@@ -23,7 +29,8 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        //
+        $clients = Client::pluck('company_name', 'id');
+        return view('projects.create')->with('clients', $clients);
     }
 
     /**
@@ -34,7 +41,31 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),
+            [
+                'client_id' => 'required',
+                'project_name' => 'required',
+            ],
+            [
+                'required' => ':attribute é obrigatório.'
+            ]
+        );
+        if ($validator->fails()) {
+            return redirect('projects/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $project = new Project;
+        $project->client_id = $request->input('client_id');
+        $project->project_name = $request->input('project_name');
+        $project->project_description = $request->input('project_description');
+        $project->total_value = $request->input('total_value');
+        $project->paid_value = $request->input('paid_value');
+        $project->starting_date = $request->input('starting_date');
+        $project->estimated_finishing_date = $request->input('estimated_finishing_date');
+        $project->status = 'ongoing';
+        $project->save();
+        return redirect('projects')->with('success', 'Project registered.');
     }
 
     /**
@@ -45,7 +76,9 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::find($id);
+        $clients = Client::all();
+        return view('projects.show')->with('project', $project)->with('clients', $clients);
     }
 
     /**
@@ -56,7 +89,8 @@ class ProjectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::find($id);
+        return view('projects.edit')->with('project', $project);
     }
 
     /**
@@ -68,7 +102,29 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(),
+            [
+                'company_name' => 'required',
+                'contact_name' => 'required',
+                'contact_email' => 'required',
+            ],
+            [
+                'required' => ':attribute é obrigatório.'
+            ]
+        );
+        if ($validator->fails()) {
+            return redirect('clients/$id/edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $project = Project::find($id);
+        $project->company_name = $request->input('company_name');
+        $project->contact_name = $request->input('contact_name');
+        $project->contact_email = $request->input('contact_email');
+        $project->contact_number = $request->input('contact_number');
+        $project->extra_info = $request->input('extra_info');
+        $project->save();
+        return redirect('/projects')->with('success', 'Project updated.');
     }
 
     /**
@@ -79,6 +135,8 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project = Project::find($id);
+        $project->delete();
+        return redirect('/projects')->with('success', 'Project removed');
     }
 }

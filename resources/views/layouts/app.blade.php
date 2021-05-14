@@ -19,6 +19,7 @@
         <script type="text/javascript">
             window.onload = function() {
                 CKEDITOR.replace( 'extra_info' );
+                CKEDITOR.replace( 'project_description' );
             };
         </script>
     </head>
