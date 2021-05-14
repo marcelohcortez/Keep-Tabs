@@ -1,3 +1,19 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+div .text-general{
+    @apply text-gray-50;
+}
+div .text-general-dark{
+    @apply text-gray-700;
+}
+.btn{
+    @apply p-2 cursor-pointer rounded-md font-bold text-white;
+}
+.btn-default{
+    @apply bg-blue-900;
+}
+.btn-danger{
+    @apply bg-red-600;
+}

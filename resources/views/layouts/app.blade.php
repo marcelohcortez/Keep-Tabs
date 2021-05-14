@@ -23,11 +23,11 @@
         </script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-blue-900">
+        <div class="min-h-screen bg-blue-50">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
-            <header class="bg-blue-800 shadow">
+            <header class="bg-blue-900 shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <h2 class="font-semibold text-5xl uppercase text-gray-50 leading-tight">
                         {{ $header }}
@@ -36,7 +36,7 @@
             </header>
 
             <!-- Page Content -->
-            <main class="bg-blue-900">
+            <main>
                 {{ $slot }}
             </main>
         </div>

@@ -84,7 +84,8 @@ class ClientsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = Client::find($id);
+        return view('clients.edit')->with('client', $client);
     }
 
     /**
@@ -96,7 +97,29 @@ class ClientsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(),
+            [
+                'company_name' => 'required',
+                'contact_name' => 'required',
+                'contact_email' => 'required',
+            ],
+            [
+                'required' => ':attribute é obrigatório.'
+            ]
+        );
+        if ($validator->fails()) {
+            return redirect('clients/$id/edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $client = Client::find($id);
+        $client->company_name = $request->input('company_name');
+        $client->contact_name = $request->input('contact_name');
+        $client->contact_email = $request->input('contact_email');
+        $client->contact_number = $request->input('contact_number');
+        $client->extra_info = $request->input('extra_info');
+        $client->save();
+        return redirect('/clients')->with('success', 'Client updated.');
     }
 
     /**
