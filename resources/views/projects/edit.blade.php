@@ -8,20 +8,36 @@
                 <div class="p-4 bg-blue-100 rounded-md">
                     {!! Form::open(['action' => ['App\Http\Controllers\ProjectsController@update', $project->id], 'method' => 'post']) !!}
                     <div class="form-group mb-4">
-                        <p class="text-general-dark"><strong>{{Form::label('company_name', 'Company Name')}}</strong></p>
-                        {{Form::text('company_name', $project->company_name, ['class' => 'form-control', 'placeholder' => 'Insert company name', 'value' => '{{ old("company_name") \}\}'])}}
+                        <p class="text-general-dark"><strong>{{Form::label('status', 'Status')}}</strong></p>
+                        {{Form::select('status', ['Ongoing','Finished','Canceled'], $project->status, ['class' => 'form-control', 'placeholder' => 'Status', 'value' => '{{ old("status") \}\}'])}}
                     </div>
                     <div class="form-group mb-4">
-                        <p class="text-general-dark"><strong>{{Form::label('contact_name', 'Contact Name')}}</strong></p>
-                        {{Form::text('contact_name', $project->contact_name, ['class' => 'form-control', 'placeholder' => 'Insert contact name', 'value' => '{{ old("contact_name") \}\}'])}}
+                        <p class="text-general-dark"><strong>{{Form::label('client_id', 'Client name')}}</strong></p>
+                        {{Form::select('client_id', $clients, $project->client_id, ['class' => 'form-control', 'placeholder' => 'Define a client', 'value' => '{{ old("client_id") \}\}'])}}
                     </div>
                     <div class="form-group mb-4">
-                        <p class="text-general-dark"><strong>{{Form::label('contact_email', 'Contact Email')}}</strong></p>
-                        {{Form::text('contact_email', $project->contact_email, ['class' => 'form-control', 'placeholder' => 'Insert contact email', 'value' => '{{ old("contact_email") \}\}'])}}
+                        <p class="text-general-dark"><strong>{{Form::label('project_name', 'Project Name')}}</strong></p>
+                        {{Form::text('project_name', $project->project_name, ['class' => 'form-control', 'placeholder' => 'Insert project name', 'value' => '{{ old("project_name") \}\}'])}}
                     </div>
                     <div class="form-group mb-4">
-                        <p class="text-general-dark"><strong>{{Form::label('contact_number', 'Contact Number')}}</strong></p>
-                        {{Form::text('contact_number', $project->contact_number, ['class' => 'form-control', 'placeholder' => 'Insert contact number', 'value' => '{{ old("contact_number") \}\}'])}}
+                        <p class="text-general-dark"><strong>{{Form::label('project_description', 'Project Description')}}</strong></p>
+                        {{Form::textarea('project_description', $project->project_description, ['class' => 'form-control, project_description', 'placeholder' => 'Insert project description', 'id' => 'project_description', 'name' => 'project_description', 'value' => '{{ old("project_description") \}\}'])}}
+                    </div>
+                    <div class="form-group mb-4">
+                        <p class="text-general-dark"><strong>{{Form::label('total_value', 'Total project value')}}</strong></p>
+                        {{Form::text('total_value', $project->total_value, ['class' => 'form-control', 'pattern' => '^\d*(\.\d{0,2})?$','placeholder' => 'Insert total project value', 'value' => '{{ old("total_value") \}\}'])}}
+                    </div>
+                    <div class="form-group mb-4">
+                        <p class="text-general-dark"><strong>{{Form::label('paid_value', 'Paid value')}}</strong></p>
+                        {{Form::text('paid_value', $project->paid_value, ['class' => 'form-control', 'pattern' => '^\d*(\.\d{0,2})?$','placeholder' => 'Insert paid value', 'value' => '{{ old("paid_value") \}\}'])}}
+                    </div>
+                    <div class="form-group mb-4">
+                        <p class="text-general-dark"><strong>{{Form::label('starting_date', 'Starting date')}}</strong></p>
+                        {{Form::date('starting_date', $project->starting_date)}}
+                    </div>
+                    <div class="form-group mb-4">
+                        <p class="text-general-dark"><strong>{{Form::label('estimated_finishing_date', 'Estimated finishing date')}}</strong></p>
+                        {{Form::date('estimated_finishing_date', $project->estimated_finishing_date)}}
                     </div>
                     <div class="form-group mb-4">
                         <p class="text-general-dark"><strong>{{Form::label('extra_info', 'Extra Info')}}</strong></p>
