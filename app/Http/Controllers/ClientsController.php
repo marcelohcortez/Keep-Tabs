@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -71,7 +72,8 @@ class ClientsController extends Controller
      */
     public function show($id)
     {
-        //
+        $client = Client::find($id);
+        return view('clients.show')->with('client', $client);
     }
 
     /**
@@ -105,6 +107,8 @@ class ClientsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Client::find($id);
+        $post->delete();
+        return redirect('/clients')->with('success', 'Client removed');
     }
 }
