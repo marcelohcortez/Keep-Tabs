@@ -15,13 +15,6 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
-        <script src="{{ asset('vendor/ckeditor/ckeditor/ckeditor.js') }}"></script>
-        <script type="text/javascript">
-            window.onload = function() {
-                CKEDITOR.replace( 'extra_info' );
-                CKEDITOR.replace( 'project_description' );
-            };
-        </script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-blue-50">
