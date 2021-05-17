@@ -16,7 +16,7 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::all()->sortBy('company_name');
         return view('clients.index')->with('clients', $clients);
     }
 

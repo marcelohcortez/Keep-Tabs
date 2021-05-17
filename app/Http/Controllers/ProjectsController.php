@@ -17,7 +17,7 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::all()->sortBy('project_name');
         $clients = Client::all();
         return view('projects.index')->with('projects', $projects)->with('clients', $clients);
     }
@@ -64,7 +64,8 @@ class ProjectsController extends Controller
         $project->starting_date = $request->input('starting_date');
         $project->estimated_finishing_date = $request->input('estimated_finishing_date');
         $project->extra_info = $request->input('extra_info');
-        $project->status = 'ongoing';
+        $project->status_project = 'Ongoing';
+        $project->status_payment = 'Open';
         $project->save();
         return redirect('projects')->with('success', 'Project registered.');
     }
@@ -127,8 +128,12 @@ class ProjectsController extends Controller
         $project->total_value = $request->input('total_value');
         $project->paid_value = $request->input('paid_value');
         $project->extra_info = $request->input('extra_info');
-        $project->status = $request->input('status');
+        $project->status_project = $request->input('status_project');
+        $project->status_payment = $request->input('status_payment');
 
+        if($request->input('starting_date')){
+            $project->starting_date = $request->input('starting_date');
+        }
         if($request->input('estimated_finishing_date')){
             $project->estimated_finishing_date = $request->input('estimated_finishing_date');
         }

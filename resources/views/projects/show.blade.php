@@ -5,7 +5,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="action-list p-4 bg-blue-100 rounded">
-                <p class="text-general-dark mb-4 text-xl"><strong>STATUS:</strong><br/> <span class="pl-4">{{$project->status}}</span></p>
+                <p class="text-general-dark mb-4 text-xl"><strong>PROJECT STATUS:</strong><br/> <span class="pl-4">{{$project->status_project}}</span></p>
+                <p class="text-general-dark mb-4 text-xl"><strong>PAYMENT STATUS:</strong><br/> <span class="pl-4">{{$project->status_payment}}</span></p>
                 <p class="text-general-dark mb-4 text-xl"><strong>PROJECT NAME:</strong><br/> <span class="pl-4">{{$project->project_name}}</span></p>
                 <p class="text-general-dark mb-4 text-xl"><strong>COMPANY NAME:</strong><br/>
                     <span class="pl-4">
