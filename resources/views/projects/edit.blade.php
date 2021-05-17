@@ -9,7 +9,7 @@
                     {!! Form::open(['action' => ['App\Http\Controllers\ProjectsController@update', $project->id], 'method' => 'post']) !!}
                     <div class="form-group mb-4">
                         <p class="text-general-dark"><strong>{{Form::label('status', 'Status')}}</strong></p>
-                        {{Form::select('status', ['Ongoing','Finished','Canceled'], $project->status, ['class' => 'form-control', 'placeholder' => 'Status', 'value' => '{{ old("status") \}\}'])}}
+                        {{Form::select('status', ['Ongoing' => 'Ongoing','Finished' => 'Finished','Canceled' => 'Canceled'], $project->status, ['class' => 'form-control', 'placeholder' => 'Status', 'value' => '{{ old("status") \}\}'])}}
                     </div>
                     <div class="form-group mb-4">
                         <p class="text-general-dark"><strong>{{Form::label('client_id', 'Client name')}}</strong></p>
@@ -32,12 +32,12 @@
                         {{Form::text('paid_value', $project->paid_value, ['class' => 'form-control', 'pattern' => '^\d*(\.\d{0,2})?$','placeholder' => 'Insert paid value', 'value' => '{{ old("paid_value") \}\}'])}}
                     </div>
                     <div class="form-group mb-4">
-                        <p class="text-general-dark"><strong>{{Form::label('starting_date', 'Starting date')}}</strong></p>
-                        {{Form::date('starting_date', $project->starting_date)}}
+                        <p class="text-general-dark"><strong>{{Form::label('estimated_finishing_date', 'Estimated finishing date')}}</strong></p>
+                        {{Form::date('estimated_finishing_date', $project->estimated_finishing_date,  ['class' => 'form-control', 'value' => '{{ old("estimated_finishing_date") \}\}'])}}
                     </div>
                     <div class="form-group mb-4">
-                        <p class="text-general-dark"><strong>{{Form::label('estimated_finishing_date', 'Estimated finishing date')}}</strong></p>
-                        {{Form::date('estimated_finishing_date', $project->estimated_finishing_date)}}
+                        <p class="text-general-dark"><strong>{{Form::label('effective_finishing_date', 'Effective finishing date')}}</strong></p>
+                        {{Form::date('effective_finishing_date', $project->effective_finishing_date,  ['class' => 'form-control', 'value' => '{{ old("effective_finishing_date") \}\}'])}}
                     </div>
                     <div class="form-group mb-4">
                         <p class="text-general-dark"><strong>{{Form::label('extra_info', 'Extra Info')}}</strong></p>

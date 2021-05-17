@@ -29,11 +29,11 @@
                     </div>
                     <div class="form-group mb-4">
                         <p class="text-general-dark"><strong>{{Form::label('starting_date', 'Starting date')}}</strong></p>
-                        {{Form::date('starting_date', \Carbon\Carbon::now())}}
+                        {{Form::date('starting_date', \Carbon\Carbon::now()->format('d-m-Y'))}}
                     </div>
                     <div class="form-group mb-4">
                         <p class="text-general-dark"><strong>{{Form::label('estimated_finishing_date', 'Estimated finishing date')}}</strong></p>
-                        {{Form::date('estimated_finishing_date', \Carbon\Carbon::now())}}
+                        {{Form::date('estimated_finishing_date', \Carbon\Carbon::now()->format('d-m-Y'))}}
                     </div>
                     <div class="form-group mb-4">
                         <p class="text-general-dark"><strong>{{Form::label('extra_info', 'Extra Info')}}</strong></p>

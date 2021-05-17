@@ -29,24 +29,20 @@
                             </a>
                         </div>
                         <div class="w-3/12 flex flex-col bg-blue-800 p-4">
-                            <a href="mailto:{{$project->contact_email}}" class="text-general hover:underline">
-                                <strong>Email:</strong>
-                                @foreach($clients as $client)
-                                    @if($client->id === $project->client_id)
+                            @foreach($clients as $client)
+                                @if($client->id === $project->client_id)
+                                    <a href="mailto:{{$client->contact_email}}" class="text-general hover:underline">
+                                        <strong>Email:</strong>
                                         {{$client->contact_email}}
-                                    @endif
-                                @endforeach
-                            </a>
-                            @if($client->contact_number)
-                                <a href="tel:{{$client->contact_number}}" class="text-general hover:underline">
-                                    <strong>Number:</strong>
-                                    @foreach($clients as $client)
-                                        @if($client->id === $project->client_id)
+                                    </a>
+                                    @if($client->contact_number)
+                                        <a href="tel:{{$client->contact_number}}" class="text-general hover:underline">
+                                            <strong>Number:</strong>
                                             {{$client->contact_number}}
-                                        @endif
-                                    @endforeach
-                                </a>
-                            @endif
+                                        </a>
+                                    @endif
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 @endforeach

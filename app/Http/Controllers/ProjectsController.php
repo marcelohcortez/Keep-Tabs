@@ -63,6 +63,7 @@ class ProjectsController extends Controller
         $project->paid_value = $request->input('paid_value');
         $project->starting_date = $request->input('starting_date');
         $project->estimated_finishing_date = $request->input('estimated_finishing_date');
+        $project->extra_info = $request->input('extra_info');
         $project->status = 'ongoing';
         $project->save();
         return redirect('projects')->with('success', 'Project registered.');
@@ -112,23 +113,31 @@ class ProjectsController extends Controller
                 'required' => ':attribute é obrigatório.'
             ]
         );
+
         if ($validator->fails()) {
             return redirect('projects/$id/edit')
                 ->withErrors($validator)
                 ->withInput();
         }
+
         $project = Project::find($id);
         $project->client_id = $request->input('client_id');
         $project->project_name = $request->input('project_name');
         $project->project_description = $request->input('project_description');
         $project->total_value = $request->input('total_value');
         $project->paid_value = $request->input('paid_value');
-        $project->starting_date = $request->input('starting_date');
-        $project->estimated_finishing_date = $request->input('estimated_finishing_date');
-        $project->effective_finishing_date = $request->input('effective_finishing_date');
         $project->extra_info = $request->input('extra_info');
         $project->status = $request->input('status');
+
+        if($request->input('estimated_finishing_date')){
+            $project->estimated_finishing_date = $request->input('estimated_finishing_date');
+        }
+        if($request->input('effective_finishing_date')){
+            $project->effective_finishing_date = $request->input('effective_finishing_date');
+        }
+
         $project->save();
+
         return redirect('/projects')->with('success', 'Project updated.');
     }
 
