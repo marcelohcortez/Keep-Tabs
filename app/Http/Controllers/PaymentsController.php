@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\Payment;
+use App\Models\Project;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PaymentsController extends Controller
 {
@@ -13,7 +18,10 @@ class PaymentsController extends Controller
      */
     public function index()
     {
-        return view('payments.index');
+        $payments = Payment::all()->sortBy('paid_on');
+        $projects = Project::all();
+        $clients = Client::all();
+        return view('payments.index')->with('payments', $payments)->with('projects', $projects)->with('clients', $clients);
     }
 
     /**
@@ -23,7 +31,8 @@ class PaymentsController extends Controller
      */
     public function create()
     {
-        //
+        $projects = Project::pluck('project_name', 'id');
+        return view('payments.create')->with('projects', $projects);
     }
 
     /**
@@ -34,7 +43,32 @@ class PaymentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),
+            [
+                'project_id' => 'required',
+                'value' => 'required',
+            ],
+            [
+                'required' => ':attribute é obrigatório.'
+            ]
+        );
+        if ($validator->fails()) {
+            return redirect('payments/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $payment = new Payment;
+        $payment->project_id = $request->input('project_id');
+        $payment->value = $request->input('value');
+
+        if($request->input('paid_on')){
+            $payment->paid_on = $request->input('paid_on');
+        } else{
+            $payment->paid_on = date("Y-m-d H:i:s");
+        }
+
+        $payment->save();
+        return redirect('payments')->with('success', 'Payment registered.');
     }
 
     /**
@@ -45,7 +79,22 @@ class PaymentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $payment = Payment::find($id);
+        $projects = Project::all();
+        $clients = Client::all();
+
+        foreach($projects as $project){
+            if($project->id === $payment->project_id){
+                $projectItem = $project;
+            }
+        }
+        foreach($clients as $client){
+            if($client->id === $projectItem->client_id){
+                $clientItem = $client;
+            }
+        }
+
+        return view('payments.show')->with('payment', $payment)->with('project', $projectItem)->with('client', $clientItem);
     }
 
     /**
@@ -56,7 +105,9 @@ class PaymentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $payment = Payment::find($id);
+        $projects = Project::pluck('project_name', 'id');
+        return view('payments.edit')->with('payment', $payment)->with('projects', $projects);
     }
 
     /**
@@ -68,7 +119,33 @@ class PaymentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(),
+            [
+                'project_id' => 'required',
+                'value' => 'required',
+            ],
+            [
+                'required' => ':attribute é obrigatório.'
+            ]
+        );
+
+        if ($validator->fails()) {
+            return redirect('payments/$id/edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $payment = Payment::find($id);
+        $payment->project_id = $request->input('project_id');
+        $payment->value = $request->input('value');
+
+        if($request->input('paid_on')){
+            $payment->paid_on = $request->input('paid_on');
+        }
+
+        $payment->save();
+
+        return redirect('/payments')->with('success', 'Payment updated.');
     }
 
     /**
@@ -79,6 +156,8 @@ class PaymentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $payment = Payment::find($id);
+        $payment->delete();
+        return redirect('/payments')->with('success', 'Payment removed');
     }
 }
