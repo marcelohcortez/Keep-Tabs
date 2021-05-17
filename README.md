@@ -1,71 +1,129 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Keep Tabs
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
-## General info
 This project was built using Laravel, Blade, Tailwind CSS and Breeze
 
-## Default Admin User
-- In order to create a default admin login, before the app deployment, go to your .env file and edit:
-    - ADMIN_NAME=
-    - ADMIN_EMAIL=
-    - ADMIN_PASSWORD=
-    <br/>
-  Then run <i>'php artisan db:seed --force'</i>
+### Prerequisites
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+What things you need to install the software and how to install them.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+![](https://img.shields.io/badge/PHP-v7.2-blue.svg)
+![](https://img.shields.io/badge/MYSQL-v5.7-green.svg)
+![](https://img.shields.io/badge/APACHE-v2.5-yellow.svg)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Use one of these softs according to your OS :
 
-## Learning Laravel
+-   **Windows** : Use WAMP or XAMP
+-   **Mac OS**: Use MAMP (PRO)
+-   **Linux**: Use LAMP
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Installing
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**First, finish reading this file and check about the 'database connection' and 'default admin'**
 
-## Laravel Sponsors
+To start configuring the project, follow this commands
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Install composer dependencies
 
-### Premium Partners
+```
+composer install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+Create .env file
+
+```
+cp .env.example .env
+```
+
+Generate key
+
+```
+php artisan key:generate
+```
+
+Install npm dependencies
+
+```
+npm install
+```
+
+Generate styles and javascripts, the page will auto reload.
+
+```
+npm run watch
+```
+
+Generate ES5 file for Internet Explorer compatibility.
+```
+npm run gulp:watch
+```
+
+Run migrations
+
+```
+php artisan migrate
+```
+
+Refresh the database and run all database seeds...
+
+```
+php artisan migrate:refresh --seed
+```
+
+Clear cache
+```
+php artisan cache:clear
+php artisan view:clear
+php artisan route:clear
+php artisan clear-compiled
+php artisan config:cache
+```
+
+## Database Connection
+
+The project use a MySQL database.
+
+Use one of these softs according to your OS to connect to the database :
+
+-   **Windows** : Use Heidi SQL
+-   **Mac OS**: Use Sequel Pro
+-   **Linux**: Use Heidi SQL
+
+Up to you to modify these values according to your environment on the .env file.
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=''
+DB_USERNAME=root
+DB_PASSWORD=root
+```
+
+##  Default Admin User
+
+In order to create a default admin login, before the app deployment, go to your .env file and edit:
+```    
+ADMIN_NAME=
+ADMIN_EMAIL=
+ADMIN_PASSWORD=
+```
+Then run
+```
+php artisan db:seed --force
+```
+
+## Running the tests
+
+Not yet implemented
+
+## Deployment
+
+Not yet implemented
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Not yet implemented
 
-## Code of Conduct
+## Versioning
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Not yet implemented
