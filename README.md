@@ -6,13 +6,13 @@ This project was built using Laravel, Blade, Tailwind CSS and Breeze
 
 What things you need to install the software and how to install them.
 
-![](https://img.shields.io/badge/PHP-v7.2-blue.svg)
+![](https://img.shields.io/badge/PHP-v7.4-blue.svg)
 ![](https://img.shields.io/badge/MYSQL-v5.7-green.svg)
 ![](https://img.shields.io/badge/APACHE-v2.5-yellow.svg)
 
 Use one of these softs according to your OS :
 
--   **Windows** : Use WAMP or XAMP
+-   **Windows** : Use WAMP, XAMP or Laragon
 -   **Mac OS**: Use MAMP (PRO)
 -   **Linux**: Use LAMP
 
@@ -111,6 +111,14 @@ Then run
 ```
 php artisan db:seed --force
 ```
+
+## TO DO
+- Completely redo the visual part
+- 'Projects' - See the total already paid for that project;
+- 'Projects' - See how much is left to pay for that project;
+- When editing a project or payment, see the current values on date fields;
+- Change from CKEditor to TinyMCE
+- Add a 'To Do' area
 
 ## Running the tests
 
