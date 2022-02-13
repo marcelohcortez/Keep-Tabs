@@ -1,6 +1,9 @@
 # Keep Tabs
 
-This project was built using Laravel, Blade, Tailwind CSS and Breeze
+Simple project to register projects, clients and payments.
+This project was built using Laravel, Blade, Tailwind CSS and Breeze.
+
+*Developed by Marcelo Cortez*
 
 ### Prerequisites
 
